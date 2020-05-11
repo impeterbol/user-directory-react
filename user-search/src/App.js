@@ -40,12 +40,14 @@ function App() {
     const fetchAPI = async () => {
       const res = await fetch('https://randomuser.me/api/?results=20')
       const data = await res.json();
+      console.log(data);
       const mapped = data.results.map(p => ({
         firstName: p.name.first,
         lastName: p.name.last,
         email: p.email,
         img: p.picture.thumbnail,
-        dob: p.dob.date
+        dob: p.dob.date,
+        idP: p.id.value
       }))
       setState(state => ({...state, results: mapped, filtered: mapped }))
     }
@@ -107,10 +109,15 @@ function App() {
   
       <ul>
         {state.filtered.map(p => (
-          <li key={p.lastName}>{p.firstName} {p.lastName}</li>
+          <li key={p.idP}>{p.firstName} {p.lastName} {p.email} {p.dob}</li>
         ))}
       </ul>
+
+ 
     </div>
+
+
+
   );
 }
 
