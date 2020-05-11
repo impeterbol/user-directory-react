@@ -10,12 +10,22 @@ function App() {
     search: ''
   });
   
-  React.useEffect(() => {
-    const results = people.filter(person =>
-      person.toLowerCase().includes(searchTerm)
-    );
-    setSearchResults(results);
-  }, [searchTerm]);
+  React.useEffect(()=>{
+    const fetchAPI = async () => {
+      const res = await fetch('https://randomuser.me/api/?results=20')
+      const data = await res.json();
+      const mapped = data.results.map(p => ({
+        firstName: p.name.first,
+        lastName: p.name.last,
+        email: p.email,
+        img: p.picture.thumbnail,
+        dob: p.dob.date
+      }))
+      setState(state => ({...state, results: mapped, filtered: mapped }))
+    }
+    fetchAPI()
+  }, [])
+
   return (
     <div className="App">
       <input
