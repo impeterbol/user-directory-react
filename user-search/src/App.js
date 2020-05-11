@@ -65,7 +65,7 @@ function App() {
       })
     }))
     console.timeEnd("some")
-    console.dir(console)
+    // console.dir(console)
         // filtered: state.results.filter(p => {
         //   let isFirst = p.firstName.toLowerCase().includes(state.search.toLowerCase())
         //   let isLast = p.lastName.toLowerCase().includes(state.search.toLowerCase())
@@ -103,9 +103,11 @@ function App() {
         value={state.search}
         onChange={handleChange}
       />
+
+  
       <ul>
         {state.filtered.map(p => (
-          <li>{p.firstName} {p.lastName}</li>
+          <li key={p.lastName}>{p.firstName} {p.lastName}</li>
         ))}
       </ul>
     </div>
