@@ -2,21 +2,14 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-const people = [
-  "1User",
-  "12User",
-  "14User",
-  "13User",
-  "15User",
-  "16User",
-  "17User"
-];
+
 function App() {
-  const [searchTerm, setSearchTerm] = React.useState("");
-  const [searchResults, setSearchResults] = React.useState([]);
-  const handleChange = event => {
-    setSearchTerm(event.target.value);
-  };
+  const [state, setState] = React.useState({
+    results: [],
+    filtered: [],
+    search: ''
+  });
+  
   React.useEffect(() => {
     const results = people.filter(person =>
       person.toLowerCase().includes(searchTerm)
