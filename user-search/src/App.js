@@ -106,12 +106,37 @@ function App() {
         onChange={handleChange}
       />
 
+<table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>First</th>
+            <th>Last</th>
+            <th>Email</th>
+            <th>DOB</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {state.filtered.map(p => {
+            return (
+              <tr key={p.idP}>
+                <td>{p.idP}</td>
+                <td>{p.firstName}</td>
+                <td>{p.lastName}</td>
+                <td>{p.email}</td>
+                <td>{p.dob}</td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
   
-      <ul>
+      {/* <ul>
         {state.filtered.map(p => (
           <li key={p.idP}>{p.firstName} {p.lastName} {p.email} {p.dob}</li>
         ))}
-      </ul>
+      </ul> */}
 
  
     </div>
